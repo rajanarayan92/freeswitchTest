@@ -1,0 +1,24 @@
+# Pull Debian stretch
+
+FROM debian:stretch
+
+# Expose the ports
+EXPOSE 5060/udp
+EXPOSE 5060/tcp
+EXPOSE 5080/udp
+EXPOSE 5080/tcp
+EXPOSE 80/tcp
+
+LABEL app freeswitch
+
+# Copy the configuration to the container
+COPY ./setup.sh /
+COPY ./users/testplivo1.xml /tmp/
+COPY ./users/testplivo2.xml /tmp/
+COPY ./users/user.xml /tmp/default.xml
+
+# Run the setup script
+RUN chmod +x /setup.sh && sh setup.sh
+
+# Entry point for the container, run freeswitch
+ENTRYPOINT bash && freeswitch
