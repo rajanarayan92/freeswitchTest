@@ -2,3 +2,11 @@ Flask python framework is used for restful service.
 
 NOTE...
 This is Partially implemented module
+
+
+Example -
+
+curl -d '{"destination":"testplivo1"}' -H "Content-Type: application/json" -X POST http://0.0.0.0:80/api/call/
+{
+  "message": "OK"
+}
